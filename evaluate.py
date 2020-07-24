@@ -16,9 +16,11 @@ def get_acc(model, X, y):
 
 
 def print_report(model, X, y, target_names, report_path):
+    y_pred = model.predict(X)
+
     result_dict = {"label": [], "precision": [], "recall": [], "f1_score": [], "support": []}
 
-    report = classification_report(y_test, y_test_pred, target_names=target_names, output_dict=True)
+    report = classification_report(y, y_pred, target_names=target_names, output_dict=True)
 
     not_labels = ["accuracy", "macro avg", "weighted avg"]
     eval_label_report = {key : value for key, value in report.items() if key not in not_labels}
